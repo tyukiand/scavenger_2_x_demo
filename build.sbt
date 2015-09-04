@@ -9,7 +9,8 @@ lazy val root = (project in file(".")).
     // Scala version used in your project, list of dependencies
     scalaVersion := "2.10.4",
     libraryDependencies ++= Seq(
-      "org.scavenger" % "scavenger_2.10" % "2.1"
+      "org.scavenger" % "scavenger_2.10" % "2.1",
+      "nz.ac.waikato.cms.weka" % "weka-stable" % "3.6.12"
     ),
     // collect all dependency-jars into single folder,
     // useful if you want to copy all this stuff to the cluster at once
@@ -17,5 +18,7 @@ lazy val root = (project in file(".")).
     // addSbtPlugin("org.xerial.sbt" % "sbt-pack" % "0.7.5")
     // into ~/.sbt/0.13/plugins/plugins.sbt 
     // and restart sbt
-    packAutoSettings
+    packAutoSettings,
+    fork := true,
+    javaOptions := Seq("-Dconfig.file=scavenger.conf")
   )

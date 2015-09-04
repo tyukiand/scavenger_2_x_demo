@@ -63,12 +63,13 @@ object DistributedHelloWorld extends DistributedScavengerApp {
     // the decrypted message is there
     resultFuture.onSuccess { case str: String =>
       // draw the result with a box around it
-      println("#" * 80)
-      println("#" + (" " * 78) + "#")
-      println("#" + (" " * ((78 - str.size) / 2)) + str + 
-        (" " * (78 - (78 - str.size) / 2 - str.size)) + "#") 
-      println("#" + (" " * 78) + "#")
-      println("#" * 80)
+      val msg = "#" * 80 + "\n" + 
+      "#" + (" " * 78) + "#" + "\n" + 
+      "#" + (" " * ((78 - str.size) / 2)) + str + 
+        (" " * (78 - (78 - str.size) / 2 - str.size)) + "#" + "\n" +
+      "#" + (" " * 78) + "#" + "\n" + 
+      "#" * 80
+      println(msg)
       scavengerShutdown()
     }
 

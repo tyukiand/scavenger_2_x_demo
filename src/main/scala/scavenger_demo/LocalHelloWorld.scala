@@ -6,7 +6,7 @@ import scala.concurrent.Future
 
 case object Rot13 extends AtomicAlgorithm[Char, Char] {
   def apply(c: Char, ctx: Context): Future[Char] = {
-    // Thread.sleep((new scala.util.Random).nextInt(1000)) // pretend it's hard
+    Thread.sleep((new scala.util.Random).nextInt(1000)) // pretend it's hard
     val res = if ('A' <= c && c <= 'Z') ('A' + (c + 13 - 'A') % 26).toChar
     else if ('a' <= c && c <= 'z') ('a' + (c + 13 - 'a') % 26).toChar
     else c
@@ -20,7 +20,7 @@ case object Rot13 extends AtomicAlgorithm[Char, Char] {
  * Scavenger 2.x-specific hello-world example,
  * with a single actor system simulating the entire cluster.
  */
-object LocalHelloWorld extends LocalScavengerApp(1) {
+object LocalHelloWorld extends LocalScavengerApp(4) {
   def main(args: Array[String]): Unit = {
 
     // before we do anything, we have to initialize the master node

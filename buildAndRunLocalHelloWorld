@@ -1,0 +1,2 @@
+#!/bin/bash
+sbt pack && java -cp 'target/pack/lib/*' -Dconfig.file=scavenger.conf scavenger_demo.LocalHelloWorld

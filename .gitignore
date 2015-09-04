@@ -1,3 +1,5 @@
 \[blue\]
 \[orange\]
-target
+project/
+target/
+.sbtserver/

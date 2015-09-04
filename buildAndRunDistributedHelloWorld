@@ -1,0 +1,6 @@
+#!/bin/bash
+sbt pack && 
+scavenger startSeed --config-file scavenger.conf &
+scavenger startWorker --config-file scavenger.conf --jars 'target/pack/lib/*' &
+scavenger startWorker --config-file scavenger.conf --jars 'target/pack/lib/*' &
+scavenger startMaster --config-file scavenger.conf --jars 'target/pack/lib/*' --main scavenger_demo.DistributedHelloWorld
