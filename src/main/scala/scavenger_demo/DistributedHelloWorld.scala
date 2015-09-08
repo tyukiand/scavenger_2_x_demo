@@ -1,12 +1,11 @@
-package scavenger_demo
+package scavenger_demo.distributed
 import scala.concurrent.Future
 import scavenger._
 import scavenger.app.DistributedScavengerApp
 import scala.concurrent.Future
 
-// It's the same as Rot13, name changed so that we don't need to move it
-// into a separate file.
-case object Rot13_again extends AtomicAlgorithm[Char, Char] {
+// Rot13 atomic algorithm that accepts Chars and returns Chars
+case object Rot13 extends AtomicAlgorithm[Char, Char] {
   def apply(c: Char, ctx: Context): Future[Char] = {
     // Thread.sleep((new scala.util.Random).nextInt(1000)) // pretend it's hard
     val res = if ('A' <= c && c <= 'Z') ('A' + (c + 13 - 'A') % 26).toChar
@@ -39,7 +38,7 @@ object DistributedHelloWorld extends DistributedScavengerApp {
     // Now we apply `rot13` algorithm to the data and 
     // generate bunch of jobs: one job for each character
     val jobs = for (trivialComp <- data) yield {
-      Rot13_again(trivialComp)
+      Rot13(trivialComp)
     }
 
     // Nothing has been computed so far. We have merely created

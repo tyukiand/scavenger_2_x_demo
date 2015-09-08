@@ -1,4 +1,4 @@
-package scavenger_demo
+package scavenger_demo.local
 import scala.concurrent.Future
 import scavenger._
 import scavenger.app.LocalScavengerApp
